@@ -43,9 +43,13 @@ Tie.
 
 
 #### Integration Solr or ElasticSearch client
-Calling Java client, Solr and ElasticSearch native clients are both implemented in Java, from Scala requires more development effort(a abstraction level to convert Java Types of Scala Types).
+Calling Java client(Solr and ElasticSearch native clients are both implemented in Java) from Scala requires more development effort, a layer of abstraction/interface to convert Java Types to Scala Types.
 
 Java wins.
+
+
+#### Libraries for re-ranking and query processing
+TODO
 
 
 ### Prerequisite for running sample projects
