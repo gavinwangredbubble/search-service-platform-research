@@ -16,7 +16,7 @@ Criteria for evaluation:
 
 
 ### ssScala vs ssJava
-####Scalability
+#### Scalability
 Please refer to [Paypal usecase](https://www.paypal-engineering.com/2016/05/11/squbs-a-new-reactive-way-for-paypal-to-build-applications/): 
 
 > With as little as 8 VMs and 2 vCPU each, applications were able to serve over a billion hits a day.
@@ -24,26 +24,26 @@ Please refer to [Paypal usecase](https://www.paypal-engineering.com/2016/05/11/s
 Play wins.
 
 
-####RB Knowledge
+#### RB Knowledge
 Almost every dev at RB knows Java, whereas not many of them have used Scala. Besides, the learning curve of Scala is steep. In terms of frameworks, both have good routing apis. Play's routing DSL is more flexible compared to Spring Boot's regex impl. Both support dependency injection(runtime and compile time) and aspect orented programming which is very useful for implementing single point error handler and logging. Spring Boot is more easier to bootstrap a service, very clean project structure.
 
 Java wins.
 
 
-####Speed
+#### Speed
 Play(built on top of akka http api) is non-blocking, which means better use of CPU and high throughput. Scala has better support for writing async programs. Compared to other languages, in general, staticly typed languages are faster than dynamicly typed ones. For example, Java is around 4 times faster than Node.js. [Benchmark results](https://benchmarksgame.alioth.debian.org/u64q/javascript.html).
 
 Play wins.
 
 
-####Deployment and Integration with K8s
+#### Deployment and Integration with K8s
 
 Both have good build tools/plugins to dist docker images.
 
 Tie.
 
 
-####Integration Solr or ElasticSearch client
+#### Integration Solr or ElasticSearch client
 
 Calling Java client(Solr and ElasticSearch native clients are both implemented in Java) from Scala requires more development effort(a abstraction level to convert Java Types of Scala Types).
 
