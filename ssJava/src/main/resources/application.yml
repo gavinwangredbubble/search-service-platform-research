@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+project:
+  name: ss
+  version: 0.0.1
+  description: Sample project for Search Service
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
