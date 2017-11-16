@@ -26,7 +26,7 @@ object ProductId {
   }
 }
 
-@ImplementedBy(classOf[ProductRepositoryImplWithMockData])
+@ImplementedBy(classOf[ProductRepositoryImplWithSolr])
 trait ProductRepository {
 
   def searchByQuery(query: String, page: Option[Int]): Future[ProductsData]
@@ -38,9 +38,32 @@ class ProductRepositoryImplWithSolr @Inject()(client: SolrClient)(
     implicit ec: ExecutionContext)
     extends ProductRepository {
 
+  val mockData = List(
+    ProductData(ProductId(21392258L), "Cat Sticker", "u-sticker"),
+    ProductData(ProductId(15563459L), "Cat Eye Galaxy Sticker", "u-sticker"))
+
   //client.XXX
   override def searchByQuery(query: String,
-                             page: Option[Int]): Future[ProductsData] = ???
+                             page: Option[Int]): Future[ProductsData] = {
+
+    val solrDocumentList = client.getSolrResult(query, List())
+
+    solrDocumentList.map(x => x.forEach(println(_)))
+
+    page match {
+      case Some(p) =>
+        Future {
+          ProductsData(mockData, Some(p + 1), previousPage(p), mockData.length)
+        }
+      case None =>
+        Future {
+          ProductsData(mockData, Some(1), None, mockData.length)
+        }
+    }
+  }
+
+  private def previousPage(page: Int): Option[Int] =
+    if (page > 0) Some(page - 1) else None
 }
 @Singleton
 class ProductRepositoryImplWithMockData @Inject()()(
